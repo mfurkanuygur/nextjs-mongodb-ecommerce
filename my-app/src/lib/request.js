@@ -1,11 +1,11 @@
 // const APIKEY = import.meta.env.X_API_KEY
-const APIKEY = "neurelo_9wKFBp874Z5xFw6ZCfvhXfFXS+qEk0CNKigOZhTvsKrXiEJK9aDujgjK5TMVNC7B5beDFKhDF9bEKuCXeuAb/ulD3z4HN1DUVy0ygEdwfRsCe3g+pHL+XmJDQD8JOWa3jw0ALUJzEWYCoEJDzJj1LeNElodKD2lCqSgMx0Prbxw5mTcnDqMuxp02o6K2hJUY_lLfGmru/o7M5NSDdc/jQh0pijzEY3VG9J30d+wam0j8="
-const URL = "https://us-east-2.aws.neurelo.com/rest/products"
+const APIKEY = "neurelo_9wKFBp874Z5xFw6ZCfvhXT13/0t/Gp5XWifP5htkUdIgtZxPzUm/xtWPha0m/iENGd2CucXHwgLEQT3tTYe06FN6AUWHeDFuOFFWTYOx4VrwfFPLZGhS3HUYSjxTO7xtK7xwt5ihRmptWnMz0of96AzfSazwI2n4G+sP8wg8UEeu86B+81gAP64NGAC8IQkL_/itNtZhJogjnEmHXDih0tVFf+R0k7pXVRcjhgixB46o="
+const baseURL = "https://us-east-2.aws.neurelo.com/rest/"
 
 
 
 export const getAllProducts = async () => {
-    const url = URL;
+    const url = baseURL + "next_products"
     const options = {
         method: 'GET',
         headers: {
@@ -28,7 +28,9 @@ export const getAllProducts = async () => {
     };
     try {
         const response = await fetch(url, options);
+        console.log(url)
         const result = await response.json();
+        console.log(result.data.length)
         return result.data
     } catch (error) {
         console.error(error);
