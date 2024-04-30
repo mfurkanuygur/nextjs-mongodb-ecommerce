@@ -28,7 +28,6 @@ export const getAllProducts = async () => {
     };
     try {
         const response = await fetch(url, options, { next: { revalidate: 3600 } },{ cache: 'no-store' });
-        console.log(url)
         const result = await response.json();
         console.log(result.data.length)
         return result.data

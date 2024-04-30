@@ -8,7 +8,7 @@ export default async function Home() {
       {allProducts?.length}
       {allProducts?.map(p => (
         <div className="text-white" key={p.id}>
-          <Image src={p.image} width={100} height={100} />
+          <Image src={p.image} width={100} height={100} alt={p.title} />
           <h4>{p.title}</h4>
 
 
