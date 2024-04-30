@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react"
 import { FiUserPlus, FiUser } from "react-icons/fi";
 import { MdOutlineFavoriteBorder, MdOutlineShoppingCart, MdOutlineLogout, MdMenu, MdSearch } from "react-icons/md";
 const Links = [
-    { id:"1",name: "Home", url: "/" },
-    { id:"2",name: "Products", url: "/products" },
-    { id:"3",name: "about", url: "/about" },
+    { id: "1", name: "Home", url: "/" },
+    { id: "2", name: "Products", url: "/products" },
+    { id: "3", name: "about", url: "/about" },
 ]
 const Navbar = () => {
     const inputRef = useRef()
@@ -70,7 +70,7 @@ const Navbar = () => {
                 {menuState && (
                     <div className="flex flex-col justify-center items-center text-center gap-5 mt-5 capitalize font-bold  md:hidden">
                         {Links.map(link => (
-                            <Link href={link.url} className=" font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
+                            <Link key={link.id} href={link.url} className=" font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
                         ))}
                         <div className="flex gap-6 ">
                             <Link href={"/login"} className=" border-2 border-primary-red text-primary-red transition-all hover:border-main-color hover:text-main-color py-2 px-3 rounded-md">
