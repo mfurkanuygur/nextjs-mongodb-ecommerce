@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react"
 import { FiUserPlus, FiUser } from "react-icons/fi";
 import { MdOutlineFavoriteBorder, MdOutlineShoppingCart, MdOutlineLogout, MdMenu, MdSearch } from "react-icons/md";
 const Links = [
-    { name: "Home", url: "/" },
-    { name: "Products", url: "/products" },
-    { name: "about", url: "/about" },
+    { id:"1",name: "Home", url: "/" },
+    { id:"2",name: "Products", url: "/products" },
+    { id:"3",name: "about", url: "/about" },
 ]
 const Navbar = () => {
     const inputRef = useRef()
@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className="flex justify-between items-center capitalize font-bold">
                     <Link className="text-2xl font-semibold " href={"/"}>NextStore</Link>
                     {Links.map(link => (
-                        <Link href={link.url} className="hidden md:block font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
+                        <Link key={link.id} href={link.url} className="hidden md:block font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
                     ))}
                     <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
                         <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black hidden md:block" />
