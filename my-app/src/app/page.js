@@ -6,7 +6,7 @@ export default async function Home() {
   const allProducts = await getAllProducts()
   return (
     <main className="flex min-h-screen flex-col items-center justify-between container mx-auto p-4 md:px-24 md:py-12 ">
-      <HomepageBanner />
+      <HomepageBanner products={allProducts.slice(0, 5)} />
       {allProducts?.length}
       {allProducts?.map(p => (
         <div className="text-black" key={p.id}>
