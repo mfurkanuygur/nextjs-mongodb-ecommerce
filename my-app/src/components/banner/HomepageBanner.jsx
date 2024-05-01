@@ -10,13 +10,13 @@ const HomepageBanner = () => {
                     </div>
                     <div>No matter what you need</div>
                     <div>We're here for you</div>
-                    
+                  
                 </h1>
                 <h4 className="text-justify text-main-color leading-5 px-5 md:px-0">
                     Keeping customer satisfaction at the forefront, we cater to every need
                     with our wide range of products. We turn shopping into an enjoyable
                     experience with our user-friendly interface and fast delivery service.
-                    By safeguarding our customers&apos; personal information through our secure
+                    By safeguarding our customers&rsquo; personal information through our secure
                     payment system, we ensure secure online shopping. We continuously
                     strive to provide you with the best shopping experience by constantly
                     improving and keeping up with innovations
