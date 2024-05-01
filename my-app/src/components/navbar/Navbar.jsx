@@ -26,8 +26,8 @@ const Navbar = () => {
         }
     }, [loginState, updateLoginState]);
     return (
-        <header className=" sticky top-0 z-40  bg-white text-main-color pb-2" >
-            <nav className=" px-4 lg:px-24 py-4" >
+        <header className="container mx-auto sticky top-0 z-40 bg-white text-main-color pb-2 md:pb-0" >
+            <nav className=" px-4 lg:px-24 py-3" >
                 <div className="flex justify-between items-center capitalize font-bold">
                     <Link className="text-2xl font-semibold " href={"/"}>NextStore</Link>
                     {Links.map(link => (
