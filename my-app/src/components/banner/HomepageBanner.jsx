@@ -15,7 +15,7 @@ const HomepageBanner = () => {
                     Keeping customer satisfaction at the forefront, we cater to every need
                     with our wide range of products. We turn shopping into an enjoyable
                     experience with our user-friendly interface and fast delivery service.
-                    By safeguarding our customers' personal information through our secure
+                    By safeguarding our customers personal information through our secure
                     payment system, we ensure secure online shopping. We continuously
                     strive to provide you with the best shopping experience by constantly
                     improving and keeping up with innovations
