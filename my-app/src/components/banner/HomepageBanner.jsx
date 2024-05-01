@@ -6,16 +6,17 @@ const HomepageBanner = () => {
             <div className=" md:w-1/2 flex flex-col text-center md:text-left gap-4">
                 <h1 className=" text-3xl md:text-5xl text-text-main-color font-bold  ">
                     <div className="text-3xl md:text-5xl text-primary-red my-3">
-                        "Easy, Fast, Secure"
+                        &ldquo;Easy, Fast, Secure&rdquo;
                     </div>
                     <div>No matter what you need</div>
                     <div>We're here for you</div>
+                    
                 </h1>
                 <h4 className="text-justify text-main-color leading-5 px-5 md:px-0">
                     Keeping customer satisfaction at the forefront, we cater to every need
                     with our wide range of products. We turn shopping into an enjoyable
                     experience with our user-friendly interface and fast delivery service.
-                    By safeguarding our customers personal information through our secure
+                    By safeguarding our customers&apos; personal information through our secure
                     payment system, we ensure secure online shopping. We continuously
                     strive to provide you with the best shopping experience by constantly
                     improving and keeping up with innovations
