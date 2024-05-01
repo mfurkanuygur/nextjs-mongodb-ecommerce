@@ -9,7 +9,7 @@ const HomepageBanner = () => {
                         &ldquo;Easy, Fast, Secure&rdquo;
                     </div>
                     <div>No matter what you need</div>
-                    <div>We're here for you</div>
+                    <div>We&rsquo;re here for you</div>
                   
                 </h1>
                 <h4 className="text-justify text-main-color leading-5 px-5 md:px-0">
