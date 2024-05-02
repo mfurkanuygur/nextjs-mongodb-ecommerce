@@ -5,7 +5,7 @@ import banner1 from '../../../public/banner1.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { useRef } from "react";
 const HomepageBanner = ({ products }) => {
 
@@ -21,12 +21,28 @@ const HomepageBanner = ({ products }) => {
         }
     };
     return (
-        <div className="w-full ">
-
-            <Swiper className='relative w-full p-64 bg-primary-red flex justify-center items-center '
+        <div className="w-full border py-12 my-6">
+            <Swiper className='relative  flex  justify-center items-center h-96'
                 slidesPerView={1} centeredSlides={true}
-                loop={true} pagination={{ clickable: true }} modules={[Navigation]} freeMode={true}
-                navigation={true} ref={swiperRef}>
+                loop={true} pagination={{ clickable: true }} modules={[Autoplay, Navigation]} freeMode={true}
+                navigation={true} ref={swiperRef} autoplay={{
+                    delay: 1500,
+                    disableOnInteraction: false,
+                }}
+                breakpoints={{
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    992: {
+                        slidesPerView: 2,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 50,
+                    },
+                }}>
                 <button onClick={slidePrev} className=" absolute left-0 top-1/2 z-10" >
                     left
                 </button>
@@ -34,14 +50,14 @@ const HomepageBanner = ({ products }) => {
                     right
                 </button>
                 {products.map(p => (
-                    <SwiperSlide key={p.id} className="min-h-96 bg-white">
-                        <div className="min-h-96 flex justify-center  flex-col-reverse md:flex-row  items-center bg-main-color  m-4 md:m-12 w-full">
-                            <div className="flex flex-col w-1/2">
-                                <h1 className="text-3xl">{p.title}</h1>
-                                <h4>{p.description}</h4>
+                    <SwiperSlide key={p.id} className="p-1">
+                        <div className="h-full flex flex-col gap-8 lg:flex-row  justify-center  items-center border  py-8">
+                            <div className=" flex justify-center ">
+                                <Image src={p.image} alt={p.title} width={100} height={100} className="w-full" />
                             </div>
-                            <div className="w-1/2 flex justify-center ">
-                                <Image src={p.image} alt={p.title} width={100} height={100} className="w-max" />
+                            <div className="lg:w-1/2 flex flex-col">
+                                <h1 className="text-lg">{p.title}</h1>
+                                <h4 className="">$ {p.price} </h4>
                             </div>
                         </div>
                     </SwiperSlide>
