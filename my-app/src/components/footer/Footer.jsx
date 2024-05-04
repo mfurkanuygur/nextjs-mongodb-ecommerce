@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { FaLinkedin, FaSquareInstagram, FaSquareGithub } from "react-icons/fa6";
+import { MdSearch } from "react-icons/md";
+
 const Footer = () => {
     return (
         <div className="px-4 py-4 xl:px-24 lg:pt-12 lg:pb-3 w-full   bg-main-color text-white">
@@ -14,6 +16,13 @@ const Footer = () => {
                 </div>
                 <div>
 
+                </div>
+                <div className="flex flex-col gap-2 my-2">
+                    <h1 className="font-semibold ">Search</h1>
+                    <form className=" w-2/3 lg:w-full mx-auto flex items-center border rounded-md bg-white ">
+                        <input type="search"  placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-main-color focus:text-black " />
+                        <MdSearch className="text-3xl  cursor-pointer text-main-color" />
+                    </form>
                 </div>
                 <div className="flex flex-col gap-2 my-2">
                     <h1 className="font-semibold ">Contact</h1>
