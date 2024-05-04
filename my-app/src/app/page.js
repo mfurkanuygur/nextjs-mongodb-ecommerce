@@ -13,7 +13,7 @@ export default async function Home() {
       <div className="w-full flex justify-between items-center">
         <h1 className="font-bold text-xl text-main-color border-b-2">Trends</h1>
         <Link href={"/products"}>
-          <button className="bg-main-color text-white  rounded-md px-4 py-2 text-sm font-light transition-all  hover:bg-primary-red">See more</button>
+          <button className="bg-main-color   text-white  rounded-md px-4 py-2 text-sm font-light transition-all  hover:bg-primary-red">See more</button>
         </Link>
       </div>
 
