@@ -12,19 +12,6 @@ export const getAllProducts = async () => {
             'Content-Type': 'application/json',
             'X-API-Key': APIKEY,
         },
-        // body: JSON.stringify({
-        //     name: 'cake',
-        //     tags: 'keto;dairy-free',
-        //     includeIngredients: 'egg;butter',
-        //     excludeIngredients: 'cinnamon',
-        //     maxPrepareTime: 10,
-        //     maxCookTime: 20,
-        //     maxCalories: 500,
-        //     maxNetCarbs: 5,
-        //     maxSugar: 3,
-        //     maxAddedSugar: 0,
-        //     limit: 10
-        // })
     };
     try {
         // , { next: { revalidate: 3600 } }, { cache: 'no-store' }
