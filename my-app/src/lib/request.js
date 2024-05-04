@@ -15,7 +15,7 @@ export const getAllProducts = async () => {
     };
     try {
         // , { next: { revalidate: 3600 } }, { cache: 'no-store' }
-        const response = await fetch(url, options);
+        const response = await fetch(url, options, { next: { revalidate: 60 } });
         const result = await response.json();
         console.log(result.data.length)
         return result.data
@@ -47,7 +47,7 @@ export const getUniqueProduct = async (slug) => {
         // })
     };
     try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, options, { next: { revalidate: 60 } });
         const result = await response.json();
         return result.data
     } catch (error) {

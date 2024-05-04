@@ -10,7 +10,7 @@ export default async function Home() {
   let products = allProducts?.sort(() => Math.random() - 0.5);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between container mx-auto p-4 xl:px-24 lg:py-12 w-full ">
-      <HomepageSlider products={allProducts.slice(10, 20)} />
+      <HomepageSlider products={allProducts?.slice(10, 20)} />
       <div className="w-full flex justify-between items-center">
         <h1 className="font-bold text-xl text-main-color border-b-2">Trends</h1>
         <Link href={"/products"}>
