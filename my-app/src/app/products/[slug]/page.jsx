@@ -1,4 +1,5 @@
 import { getUniqueProduct } from "@/lib/request"
+import Image from "next/image"
 
 const page = async ({ params }) => {
   const { slug } = params
