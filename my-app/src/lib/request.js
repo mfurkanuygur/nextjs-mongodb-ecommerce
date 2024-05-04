@@ -27,9 +27,41 @@ export const getAllProducts = async () => {
         // })
     };
     try {
-        const response = await fetch(url, options, { next: { revalidate: 3600 } },{ cache: 'no-store' });
+        // , { next: { revalidate: 3600 } }, { cache: 'no-store' }
+        const response = await fetch(url, options);
         const result = await response.json();
         console.log(result.data.length)
+        return result.data
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUniqueProduct = async (slug) => {
+    const url = baseURL + `next_products` + `/${slug}`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': APIKEY,
+        },
+        // body: JSON.stringify({
+        //     name: 'cake',
+        //     tags: 'keto;dairy-free',
+        //     includeIngredients: 'egg;butter',
+        //     excludeIngredients: 'cinnamon',
+        //     maxPrepareTime: 10,
+        //     maxCookTime: 20,
+        //     maxCalories: 500,
+        //     maxNetCarbs: 5,
+        //     maxSugar: 3,
+        //     maxAddedSugar: 0,
+        //     limit: 10
+        // })
+    };
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
         return result.data
     } catch (error) {
         console.error(error);
