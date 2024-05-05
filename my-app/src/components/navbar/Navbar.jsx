@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { FiUserPlus, FiUser } from "react-icons/fi";
 import { MdOutlineFavoriteBorder, MdOutlineShoppingCart, MdOutlineLogout, MdMenu, MdSearch } from "react-icons/md";
+
 const Links = [
     { id: "1", name: "Home", url: "/" },
     { id: "2", name: "Products", url: "/products" },
@@ -12,6 +13,7 @@ const Links = [
 ]
 const Navbar = () => {
     const inputRef = useRef()
+    const router = useRouter()
     const [menuState, setMenuState] = useState(false)
     const openMenu = () => {
         setMenuState(!menuState)
@@ -25,6 +27,22 @@ const Navbar = () => {
             updateLoginState(true);
         }
     }, [loginState, updateLoginState]);
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        console.log(inputRef.current.value)
+        // if (inputRef.current.value !== "") {
+        //     // updateSearchTerm(inputRef.current.value)
+        //     router.push(`/products/?search=${inputRef.current.value}`)
+        // }
+        // else {
+        //     router.push("/products")
+        // }
+    }
+    const handleLogout = () => {
+        sessionStorage.clear()
+        updateLoginState(!loginState)
+    }
     return (
         <header className="container mx-auto sticky top-0 z-40 bg-white text-main-color pb-2 md:pb-0" >
             <nav className=" px-4 xl:px-24 py-3" >
@@ -35,7 +53,7 @@ const Navbar = () => {
                     ))}
                     <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
                         <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black hidden md:block" />
-                        <MdSearch className="text-3xl mr-2 cursor-pointer" />
+                        <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" />
                         {/* <button className="absolute right-0 p-3" onClick={ handleClear}>x</button> */}
                     </form>
                     {
