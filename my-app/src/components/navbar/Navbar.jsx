@@ -118,7 +118,7 @@ const Navbar = () => {
             {/* onSubmit={(e) => handleSearch(e)} */}
             <form onSubmit={(e) => handleSearch(e)} className="flex gap-2 items-center border rounded-md md:hidden mx-4 mt-1">
                 <MdSearch className="text-2xl ml-2" />
-                <input type="search" placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
+                <input type="search"  onChange={updateText} placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
             </form>
         </header >
     )
