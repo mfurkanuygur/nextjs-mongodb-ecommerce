@@ -11,7 +11,7 @@ const allCategories = [
     { "id": 5, "name": "Miscellaneous" },
 ]
 const CategoriesFilter = ({ params }) => {
-
+    
     const router = useRouter()
     const searchText = params?.search
     const sort = params?.sort
@@ -62,7 +62,7 @@ const CategoriesFilter = ({ params }) => {
             {
                 allCategories.map((cat) => (
                     <form className="flex gap-2 capitalize my-1" key={cat.id}>
-                        <input type="checkbox" id={cat.name} value={cat.name.toLocaleLowerCase()} onChange={(e) => { handleFilter(e) }}/>
+                        <input type="checkbox" id={cat.name} value={cat.name.toLocaleLowerCase()} onChange={(e) => { handleFilter(e) }} />
                         <label htmlFor={cat.name} className="cursor-pointer font-light text-sm">{cat.name}</label>
                     </form>
                 ))

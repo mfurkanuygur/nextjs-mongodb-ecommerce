@@ -10,7 +10,6 @@ const ProductSort = ({ params }) => {
 
     const handleSort = (e) => {
         const productSort = e.target.value;
-
         const queryParams = [];
         if (searchText) queryParams.push(`search=${searchText}`);
         if (filters?.length > 0) queryParams.push(`filter=${filters.join(",")}`);
@@ -19,6 +18,7 @@ const ProductSort = ({ params }) => {
         const url = `/products/?${queryParams.join("&")}`;
         router.push(url);
     }
+
     useEffect(() => {
         setSelectedSort("default");
     }, [searchText]);
