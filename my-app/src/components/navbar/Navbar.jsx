@@ -12,7 +12,8 @@ const Links = [
     { id: "3", name: "about", url: "/about" },
 ]
 const Navbar = () => {
-    const inputRef = useRef()
+    // const inputRef = useRef()
+    const [inputText, setInputText] = useState(null)
     const router = useRouter()
     const [menuState, setMenuState] = useState(false)
     const openMenu = () => {
@@ -28,12 +29,14 @@ const Navbar = () => {
         }
     }, [loginState, updateLoginState]);
 
-
+    const updateText = (e) => {
+        setInputText(e.target.value)
+    }
     const handleSearch = (e) => {
         e.preventDefault()
-        if (inputRef.current.value !== "") {
+        if (inputText !== "" || inputText !== null) {
             // updateSearchTerm(inputRef.current.value)
-            router.push(`/products/?search=${inputRef.current.value}`)
+            router.push(`/products/?search=${inputText}`)
             // inputRef.current.value = ""
         }
         else {
@@ -52,14 +55,12 @@ const Navbar = () => {
                     {Links.map(link => (
                         <Link key={link.id} href={link.url} className="hidden md:block font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
                     ))}
-                    {/* <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" /> */}
-                    {/* <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
-                        <input type="text" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black " />
-                    </form> */}
-                    <form onSubmit={(e) => handleSearch(e)} className="flex relative items-center">
-                        <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full rounded-lg p-3 transition text-slate-400 focus:text-cyan-900 hidden md:block" />
-                        {/* <button className="absolute right-0 p-3" onClick={ handleClear}>x</button> */}
+
+                    <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
+                        <input type="text" onChange={updateText} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black " />
+                        <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" />
                     </form>
+
                     {
                         loginState &&
                         <>
@@ -117,7 +118,7 @@ const Navbar = () => {
             {/* onSubmit={(e) => handleSearch(e)} */}
             <form onSubmit={(e) => handleSearch(e)} className="flex gap-2 items-center border rounded-md md:hidden mx-4 mt-1">
                 <MdSearch className="text-2xl ml-2" />
-                <input type="search" ref={inputRef} placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
+                <input type="search" placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
             </form>
         </header >
     )
