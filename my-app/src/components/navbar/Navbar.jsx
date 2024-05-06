@@ -28,16 +28,18 @@ const Navbar = () => {
         }
     }, [loginState, updateLoginState]);
 
+
     const handleSearch = (e) => {
         e.preventDefault()
-        console.log(inputRef.current.value)
-        // if (inputRef.current.value !== "") {
-        //     // updateSearchTerm(inputRef.current.value)
-        //     router.push(`/products/?search=${inputRef.current.value}`)
-        // }
-        // else {
-        //     router.push("/products")
-        // }
+        alert(inputRef.current.value)
+        if (inputRef.current.value !== "") {
+            // updateSearchTerm(inputRef.current.value)
+            router.push(`/products/?search=${inputRef.current.value}`)
+            // inputRef.current.value = ""
+        }
+        else {
+            router.push("/products")
+        }
     }
     const handleLogout = () => {
         sessionStorage.clear()
@@ -54,8 +56,10 @@ const Navbar = () => {
                     <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
                         <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black hidden md:block" />
                         <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" />
-                        {/* <button className="absolute right-0 p-3" onClick={ handleClear}>x</button> */}
                     </form>
+                    {/* <form onSubmit={(e) => handleSearch(e)} className="flex relative items-center">
+                        <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full rounded-lg p-3 transition text-slate-400 focus:text-cyan-900 hidden md:block" />
+                    </form> */}
                     {
                         loginState &&
                         <>
@@ -110,6 +114,7 @@ const Navbar = () => {
                     </div>
                 )}
             </nav>
+            {/* onSubmit={(e) => handleSearch(e)} */}
             <form onSubmit={(e) => handleSearch(e)} className="flex gap-2 items-center border rounded-md md:hidden mx-4 mt-1">
                 <MdSearch className="text-2xl ml-2" />
                 <input type="search" ref={inputRef} placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
