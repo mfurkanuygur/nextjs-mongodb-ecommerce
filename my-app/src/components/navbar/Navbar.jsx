@@ -31,7 +31,6 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        alert(inputRef.current.value)
         if (inputRef.current.value !== "") {
             // updateSearchTerm(inputRef.current.value)
             router.push(`/products/?search=${inputRef.current.value}`)
@@ -53,13 +52,14 @@ const Navbar = () => {
                     {Links.map(link => (
                         <Link key={link.id} href={link.url} className="hidden md:block font-light text-sm transition-all hover:text-primary-red ">{link.name}</Link>
                     ))}
-                    <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
-                        <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black hidden md:block" />
-                        <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" />
-                    </form>
-                    {/* <form onSubmit={(e) => handleSearch(e)} className="flex relative items-center">
-                        <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full rounded-lg p-3 transition text-slate-400 focus:text-cyan-900 hidden md:block" />
+                    {/* <MdSearch onClick={(e) => handleSearch(e)} className="text-3xl mr-2 cursor-pointer" /> */}
+                    {/* <form onSubmit={(e) => handleSearch(e)} className="hidden md:flex items-center border rounded-md  ">
+                        <input type="text" ref={inputRef} placeholder="Search something!!" className="w-full py-1 px-2 rounded-md transition font-light outline-none text-gray-500 focus:text-black " />
                     </form> */}
+                    <form onSubmit={(e) => handleSearch(e)} className="flex relative items-center">
+                        <input type="search" ref={inputRef} placeholder="Search something!!" className="w-full rounded-lg p-3 transition text-slate-400 focus:text-cyan-900 hidden md:block" />
+                        {/* <button className="absolute right-0 p-3" onClick={ handleClear}>x</button> */}
+                    </form>
                     {
                         loginState &&
                         <>
