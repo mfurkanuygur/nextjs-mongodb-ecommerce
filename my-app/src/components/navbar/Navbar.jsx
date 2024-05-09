@@ -11,6 +11,17 @@ const Links = [
     { id: "2", name: "Products", url: "/products" },
     { id: "3", name: "about", url: "/about" },
 ]
+
+const getAuthTokenCookie = (tokenName) => {
+    const cookieData = document.cookie.split(';');
+    for (const cookie of cookieData) {
+        const [key, value] = cookie.split('=');
+        if (key.trim() === 'authToken') {
+            return value.trim();
+        }
+    }
+    return null;
+};
 const Navbar = () => {
     // const inputRef = useRef()
     const [inputText, setInputText] = useState(null)
@@ -23,12 +34,18 @@ const Navbar = () => {
     const loginState = useLoginState((state) => state.loginState)
     const updateLoginState = useLoginState((state) => state.updateLoginState)
     useEffect(() => {
-        const isLogin = sessionStorage.getItem("isLogin");
-        if (isLogin && !loginState) {
+        const authToken = getAuthTokenCookie("authToken");
+        if (authToken && !loginState) {
             updateLoginState(true);
         }
     }, [loginState, updateLoginState]);
 
+    // useEffect(() => {
+    //     const isLogin = sessionStorage.getItem("isLogin");
+    //     if (isLogin && !loginState) {
+    //         updateLoginState(true);
+    //     }
+    // }, [loginState, updateLoginState]); 
     const updateText = (e) => {
         setInputText(e.target.value)
     }
@@ -43,10 +60,14 @@ const Navbar = () => {
             router.push("/products")
         }
     }
+    // const handleLogout = () => {
+    //     sessionStorage.clear()
+    //     updateLoginState(!loginState)
+    // }
     const handleLogout = () => {
-        sessionStorage.clear()
-        updateLoginState(!loginState)
-    }
+        document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        updateLoginState(false);
+    };
     return (
         <header className="container mx-auto sticky top-0 z-40 bg-white text-main-color pb-2 md:pb-0" >
             <nav className=" px-4 xl:px-24 py-3" >
@@ -118,7 +139,7 @@ const Navbar = () => {
             {/* onSubmit={(e) => handleSearch(e)} */}
             <form onSubmit={(e) => handleSearch(e)} className="flex gap-2 items-center border rounded-md md:hidden mx-4 mt-1">
                 <MdSearch className="text-2xl ml-2" />
-                <input type="search"  onChange={updateText} placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
+                <input type="search" onChange={updateText} placeholder="Search something!!" className="w-auto p-1  rounded-md transition font-light  outline-none text-gray-500 focus:text-black" />
             </form>
         </header >
     )

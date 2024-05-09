@@ -3,20 +3,19 @@ import ProductSort from "@/components/productSort/ProductSort"
 import ProductsFilter from "@/components/productsFilter/ProductsFilter"
 import { getAllProducts } from "@/lib/request"
 
-const page = async ({searchParams }) => {
-    const products = await getAllProducts();
+const page = async ({ searchParams }) => {
+    let products = await getAllProducts();
     const searchText = searchParams?.search
     const sort = searchParams?.sort
     const productFilters = searchParams?.filter?.split(",").map(filter => filter.toLowerCase())
     let filteredProducts =
         searchText == null
-            ? products
+            ? products = await getAllProducts()
             : products.filter((product) =>
                 product.title
                     .toLowerCase()
                     .includes(searchText.toLowerCase())
             );
-
     if (productFilters) {
         filteredProducts = filteredProducts.filter(product => productFilters.includes(product.category.toLowerCase()));
     }
@@ -57,12 +56,12 @@ const page = async ({searchParams }) => {
         <div className="relative flex min-h-screen  justify-between container mx-auto p-4 xl:px-24 lg:py-12 w-full gap-4 ">
             <div className="hidden lg:block w-1/6 sticky top-0">
                 <h1 className="font-bold border-b mb-2 pb-1 text-xl">Categories</h1>
-                <ProductsFilter   params={searchParams}/>
+                <ProductsFilter params={searchParams} />
             </div>
             <div className="w-full lg:w-5/6">
                 <div className="flex flex-col md:flex-row justify-between">
                     <h1 className="font-bold  mb-2 pb-1 text-xl">Produtcs  {filteredProducts?.length}</h1>
-                    <ProductSort  params={searchParams}/>
+                    <ProductSort params={searchParams} />
                 </div>
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredProducts?.map(p => (

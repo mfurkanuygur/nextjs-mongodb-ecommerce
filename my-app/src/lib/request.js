@@ -54,3 +54,89 @@ export const getUniqueProduct = async (slug) => {
         console.error(error);
     }
 }
+
+// export const createNewUser = async (newUser) => {
+//     const url = baseURL + "next_users"
+//     try {
+//         const res = await fetch(url)
+//         const users = await res.json()
+//         const isUserExists = users.some(
+//             user =>
+//                 user.name === newUser.name &&
+//                 user.surname === newUser.surname &&
+//                 user.password === newUser.password
+//         )
+//         if (isUserExists) {
+//             throw new Error("Kullanıcı zaten var")
+//         }
+
+//         const options = {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-API-Key': APIKEY,
+//             },
+//             body: JSON.stringify(newProduct),
+//         };
+//         try {
+//             // POST isteği
+//             const response = await fetch(url, options);
+//             const result = await response.json();
+//             console.log(result);
+//             return result;
+//         } catch (error) {
+//             console.error(error);
+//         }
+//         document.cookie = `authToken=${newUser.token}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
+//         return addUser
+//     }
+//     catch (error) {
+//         console.log(error)
+//         throw error;
+//     }
+// };
+export const createNewUser = async (newUser) => {
+    const url = baseURL + "next_users"
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': APIKEY,
+        },
+    };
+    try {
+        const response = await fetch(url, options, { next: { revalidate: 60 } });
+        const result = await response.json();
+        const users = result?.data
+        console.log(users)
+        const isUserExists = users?.some(
+            user =>
+                user.name === newUser.name &&
+                user.surname === newUser.surname &&
+                user.password === newUser.password
+        )
+        if (isUserExists) {
+            console.log("Kullanıcı zaten var.");
+            return;
+        } else {
+            const createUserOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': APIKEY,
+                },
+                body: JSON.stringify([newUser]),
+            };
+
+            const createResponse = await fetch(url, createUserOptions);
+            const createResult = await createResponse.json();
+            document.cookie = `authToken=${newUser.token}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
+            console.log("Yeni kullanıcı oluşturuldu:", createResult);
+            return createResult;
+        }
+    } catch (error) {
+        console.error(error);
+
+        throw new Error(error)
+    }
+}
