@@ -5,7 +5,7 @@ import { useLoginState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
 
-const page = () => {
+const SignIn = () => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [password, setPassword] = useState("");
@@ -60,4 +60,4 @@ const page = () => {
     )
 }
 
-export default page
+export default SignIn
