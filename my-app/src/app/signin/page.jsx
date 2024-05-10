@@ -1,5 +1,6 @@
 "use client"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { createNewUser } from "@/lib/request";
 import { useLoginState } from "@/store/store";
 import { useRouter } from "next/navigation";
@@ -18,19 +19,28 @@ const SignIn = () => {
         if (name !== "" && surname !== "" && password !== "") {
             const newUser = {
                 token: self.crypto.randomUUID(),
-                name: name.trim(),
-                surname: surname.trim(),
-                password: password.trim(),
+                name: name.trim().toLocaleLowerCase(),
+                surname: surname.trim().toLocaleLowerCase(),
+                password: password.trim().toLocaleLowerCase(),
                 carts: []
             };
+            createNewUser(newUser)
+                .then(() => {
+                    updateLoginState(!loginState);
+                    toast.success("Giriş başarılı")
+                    setTimeout(() => {
+                        router.push("/");
+                    }, 2000);
 
-            createNewUser(newUser).then(() => {
-                router.push("/");
-                updateLoginState(!loginState);
-                setName("");
-                setSurname("");
-                setPassword("");
-            })
+                    setName("");
+                    setSurname("");
+                    setPassword("");
+                }).catch(error => {
+                    toast.error("Kullanıcı var")
+                    setTimeout(() => {
+                        router.push("/login");
+                    }, 3000);
+                });
         }
 
     }
@@ -55,6 +65,8 @@ const SignIn = () => {
                     <input type="email" id='mail' className='border border-main-color px-2 py-1 rounded-md text-sm outline-none' placeholder="Enter your mail!" />
                 </div> */}
                 <button className="w-full px-4 py-2 rounded-md bg-main-color text-white hover:bg-primary-red transition-all">Sign in</button>
+                <ToastContainer />
+
             </form>
         </div>
     )
